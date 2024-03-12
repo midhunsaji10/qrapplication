@@ -20,10 +20,10 @@ class _MyAppState extends State<MyApp> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 100,
               ),
-              Text(
+              const Text(
                 'LOGIN',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -31,7 +31,7 @@ class _MyAppState extends State<MyApp> {
                   color: Colors.white,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                   child: TextField(
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
@@ -44,10 +44,10 @@ class _MyAppState extends State<MyApp> {
                     labelStyle: TextStyle(color: Colors.white),
                     prefixIcon: Icon(Icons.person, color: Colors.white)),
               )),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              SizedBox(
+              const SizedBox(
                 child: TextField(
                     style: TextStyle(color: Colors.white),
                     decoration: InputDecoration(
@@ -60,16 +60,16 @@ class _MyAppState extends State<MyApp> {
                         labelStyle: TextStyle(color: Colors.white),
                         prefixIcon: Icon(Icons.key, color: Colors.white))),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.teal),
                   onPressed: () {},
-                  child: Text('Login',
+                  child: const Text('Login',
                       style: TextStyle(
                         color: Colors.white,
                       ))),
-              Text("Don't have an account already??",style: TextStyle(color: Colors.white)),
-              TextButton(onPressed: () {}, child: Text('Register',style: TextStyle(color: Colors.white) ,))
+              const Text("Don't have an account already??",style: TextStyle(color: Colors.white)),
+              TextButton(onPressed: () {}, child: const Text('Register',style: TextStyle(color: Colors.white) ,))
             ],
           ),
         ),
