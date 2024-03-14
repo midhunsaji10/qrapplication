@@ -15,17 +15,26 @@ class _QrState extends State<Qr> {
       home: Scaffold(
         backgroundColor: Colors.teal,
         body: Center(
-          child: Column(mainAxisAlignment: MainAxisAlignment.center,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(height: 40,),
-              Icon(Icons.account_circle,color: Colors.white,size: 100,),
-
+              SizedBox(
+                height: 40,
+              ),
+              Icon(
+                Icons.account_circle,
+                color: Colors.white,
+                size: 100,
+              ),
               QrImage(
                 data: '7902287966',
                 version: QrVersions.auto,
                 size: 200.0,
               ),
-              Text('SCAN',style: TextStyle(color: Colors.white),)
+              Text(
+                'SCAN',
+                style: TextStyle(color: Colors.white),
+              )
             ],
           ),
         ),
