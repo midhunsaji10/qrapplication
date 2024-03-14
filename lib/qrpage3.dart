@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
+import 'package:qrapp/screen.dart';
 
 class Qr extends StatefulWidget {
   const Qr({Key? key}) : super(key: key);
@@ -26,15 +27,22 @@ class _QrState extends State<Qr> {
                 color: Colors.white,
                 size: 100,
               ),
-              QrImage(
+              QrImageView(
                 data: '7902287966',
                 version: QrVersions.auto,
                 size: 200.0,
               ),
-              Text(
-                'SCAN',
-                style: TextStyle(color: Colors.white),
-              )
+              ElevatedButton(
+                  onPressed: () {{
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) {
+                          return Camera();
+                        }));
+                  }},
+                  child: Text('SCAN NOW',
+                      style: TextStyle(
+                        color: Colors.white,
+                      )))
             ],
           ),
         ),

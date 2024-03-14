@@ -86,7 +86,7 @@ class _Page2State extends State<Page2> {
                 height: 30,
               ),
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.teal),
+                  style: ElevatedButton.styleFrom(),
                   onPressed: () {
                     {
                       Navigator.push(context,
