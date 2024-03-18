@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:qrapp/qrpage2.dart';
+import 'package:http/http.dart' as http;
+import 'package:qrapp/qrpage3.dart';
 
 class Loginscreen extends StatefulWidget {
   const Loginscreen({Key? key}) : super(key: key);
@@ -9,6 +13,27 @@ class Loginscreen extends StatefulWidget {
 }
 
 class _LoginscreenState extends State<Loginscreen> {
+  TextEditingController rollno = TextEditingController();
+  TextEditingController password = TextEditingController();
+
+  Future<void> login()async{
+    Uri uri = Uri.parse('https://scnner-web.onrender.com/api/login');
+    var response = await http.post(uri,
+        headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8'
+        },
+        body: jsonEncode({'rollno':rollno.text,'password':password.text}));
+    print(response.statusCode);
+    print(response.body);
+    var data=jsonDecode(response.body);
+    print(data["message"]);
+    if(response.statusCode == 200) {
+      Navigator.push(context, MaterialPageRoute(builder: (context) {return Qr();}));
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('SOMETHING WENT WRONG')));
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,10 +41,10 @@ class _LoginscreenState extends State<Loginscreen> {
       body: Center(
         child: Column(
           children: [
-            const SizedBox(
+             SizedBox(
               height: 100,
             ),
-            const Text(
+             Text(
               'LOGIN',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
@@ -27,8 +52,9 @@ class _LoginscreenState extends State<Loginscreen> {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(
+            SizedBox(
                 child: TextField(
+                  controller: rollno,
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
                   enabledBorder: OutlineInputBorder(
@@ -40,11 +66,12 @@ class _LoginscreenState extends State<Loginscreen> {
                   labelStyle: TextStyle(color: Colors.white),
                   prefixIcon: Icon(Icons.person, color: Colors.white)),
             )),
-            const SizedBox(
+            SizedBox(
               height: 30,
             ),
-            const SizedBox(
+             SizedBox(
               child: TextField(
+                  controller: password,
                   style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                       enabledBorder: OutlineInputBorder(
@@ -56,11 +83,11 @@ class _LoginscreenState extends State<Loginscreen> {
                       labelStyle: TextStyle(color: Colors.white),
                       prefixIcon: Icon(Icons.key, color: Colors.white))),
             ),
-            const SizedBox(height: 30),
+             SizedBox(height: 30),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(),
-                onPressed: () {},
-                child: const Text('Login',
+                onPressed: () {login();},
+                child:  Text('Login',
                     style: TextStyle(
                       color: Colors.white,
                     ))),

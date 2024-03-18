@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
-import 'package:qrapp/qrpage3.dart';
 import 'package:http/http.dart' as http;
 
 import 'login.dart';
